@@ -1,0 +1,29 @@
+@use "sass:map";
+@use "@/assets/scss/config/colors.scss" as *;
+@use "@/assets/scss/config/breakpoints.scss" as *;
+
+@mixin below($width, $orientation: "width") {
+  @media all and (max-#{$orientation}: $width) {
+    @content;
+  }
+}
+
+@mixin above($width, $orientation: "width") {
+  @media all and (min-#{$orientation}: $width) {
+    @content;
+  }
+}
+
+@function color($color) {
+  @return map.get($colors, $color);
+}
+
+@mixin breakpoint($name) {
+  @if map.has-key($breakpoints, $name) {
+    @media (min-width: map.get($breakpoints, $name)) {
+      @content;
+    }
+  } @else {
+    @warn "Несуществующая точка: #{$name}";
+  }
+}
