@@ -81,6 +81,7 @@ const onSend = () => {
 };
 
 const onChangeRoom = ({ value }: IRangeItem) => {
+	roomField.value = value;
 	filters.value.room = value;
 	onSend();
 };
@@ -100,6 +101,7 @@ const onChangeSquare = (value: [number, number]) => {
 };
 
 const onReset = () => {
+	roomField.value = '';
 	price.value = [...defPrice];
 	square.value = [...defSquare];
 	filters.value = { ...defFilters };
